@@ -104,6 +104,11 @@ int main() {
     cout << "VideoStream->CodecContext Width " << videoStream->codec->width << endl;
     cout << "VideoStream->CodecContext Height " << videoStream->codec->height << endl;
 
+    const auto imageQuantumFormat = AVPixelFormat::AV_PIX_FMT_RGB24;
+    videoFrameRGB->format = imageQuantumFormat;
+    videoFrameRGB->width = videoStream->codec->width;
+    videoFrameRGB->height = videoStream->codec->height;
+
     auto swContext = sws_getContext(
         videoStream->codec->width,
         videoStream->codec->height,
@@ -120,13 +125,9 @@ int main() {
     /**
      * We need to count and fill buffe to videoFrameRGB via it's empty
      */
-    int num_bytes = avpicture_get_size(AV_PIX_FMT_RGB24, videoStream->codec->width, videoStream->codec->height);
+    int num_bytes = avpicture_get_size(imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
     uint8_t* frame2_buffer = (uint8_t *) av_malloc(num_bytes * sizeof(uint8_t));
-    avpicture_fill((AVPicture*) videoFrameRGB, frame2_buffer, AV_PIX_FMT_RGB24, videoStream->codec->width, videoStream->codec->height);
-
-    videoFrameRGB->format = AVPixelFormat::AV_PIX_FMT_RGB24;
-    videoFrameRGB->width = videoStream->codec->width;
-    videoFrameRGB->height = videoStream->codec->height;
+    avpicture_fill((AVPicture*) videoFrameRGB, frame2_buffer, imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
 
     AVPacket *packet;
     int frameFinished;
@@ -201,7 +202,7 @@ void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inp
 
     outCodecCtx->width = videoStream->codec->width;
     outCodecCtx->height = videoStream->codec->height;
-    outCodecCtx->pix_fmt = PIX_FMT_RGB24;
+    outCodecCtx->pix_fmt = (AVPixelFormat) pFrame->format;
     outCodecCtx->codec_type = AVMEDIA_TYPE_VIDEO;
     outCodecCtx->time_base.num = videoStream->codec->time_base.num;
     outCodecCtx->time_base.den = videoStream->codec->time_base.den;
