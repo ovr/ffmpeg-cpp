@@ -88,6 +88,9 @@ int main() {
         return 0;
     }
 
+    cout << "VideoStream->CodecContext Width " << videoStream->codec->width << endl;
+    cout << "VideoStream->CodecContext Height " << videoStream->codec->height << endl;
+
     auto swContext = sws_getContext(
         videoStream->codec->width,
         videoStream->codec->height,
