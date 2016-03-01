@@ -191,31 +191,6 @@ int main() {
 void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inputFormatContext) {
     int tmp;
 
-//    AVCodec *imageCodec = nullptr;
-//    imageCodec = avcodec_find_encoder(CODEC_ID_PNG);
-//    if (imageCodec == nullptr) {
-//        cout << "Cannot open image codec :(" << endl;
-//        return;
-//    }
-//
-//    AVCodecContext *imageCodecContext = avcodec_alloc_context3(imageCodec);
-//
-//    imageCodecContext->bit_rate      = videoStream->codec->bit_rate;
-//    imageCodecContext->width         = pFrame->width;
-//    imageCodecContext->height        = pFrame->height;
-//    imageCodecContext->pix_fmt       = PIX_FMT_RGB24;
-//    imageCodecContext->codec_id      = CODEC_ID_PNG;
-//    imageCodecContext->codec_type    = AVMEDIA_TYPE_VIDEO;
-//    imageCodecContext->time_base.num = videoStream->codec->time_base.num;
-//    imageCodecContext->time_base.den = videoStream->codec->time_base.den;
-//
-//    tmp = avcodec_open2(imageCodecContext, imageCodec, nullptr);
-//    if (tmp < 0) {
-//        cout << "Cannot avcodec_open2 for image :(" << endl;
-//        return;
-//    }
-
-
     AVCodec *outCodec = avcodec_find_encoder(CODEC_ID_PNG);
     if (!outCodec) {
         cout << "Cannot avcodec_find_encoder for image :(" << endl;
