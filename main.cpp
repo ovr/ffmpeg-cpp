@@ -54,6 +54,13 @@ int main() {
     cout << "Id " << videoStream->id << endl;
 
 
+    AVCodec *videoCodec = nullptr;
+    videoCodec = avcodec_find_decoder(videoStream->codec->codec_id);
+    if (videoCodec == nullptr) {
+        cout << "Cannot open codec decoder :(" << endl;
+        return 0;
+    }
+
     /**
      * Исходный кадр
      */
@@ -90,6 +97,8 @@ int main() {
     packet = new(AVPacket);
 
     while (true) {
+        av_init_packet(packet);
+
         cout << "Read packet..." << endl;
 
         code = av_read_frame(inputFormatContext, packet);
@@ -105,6 +114,7 @@ int main() {
 
         /** This packet is a packet from video stream (Frame) */
         if (packet->stream_index == videoStream->index) {
+
             /**
              * @return On error a negative value is returned, otherwise the number of bytes
              * used or zero if no frame could be decompressed.
@@ -128,9 +138,9 @@ int main() {
 
                 cout << "Out height" << endl;
             }
-
-            av_free_packet(packet);
         }
+
+        av_free_packet(packet);
     }
 
     return 0;
