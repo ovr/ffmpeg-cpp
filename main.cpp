@@ -62,6 +62,16 @@ int main() {
     }
 
     /**
+     * @return zero on success, a negative value on error
+     */
+    code = avcodec_open2(videoStream->codec, videoCodec, nullptr);
+    if (code < 0) {
+        cout << "Cannot avcodec_open2 for videoStream :(" << endl;
+        return 0;
+    }
+
+
+    /**
      * Исходный кадр
      */
     AVFrame *videoFrame = nullptr;
