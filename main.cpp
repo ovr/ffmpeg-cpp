@@ -110,10 +110,26 @@ int main() {
              * used or zero if no frame could be decompressed.
              * */
             code = avcodec_decode_video2(videoStream->codec, videoFrame, &frameFinished, packet);
+            cout << "Decode buff " << code << endl;
 
+            /**
+             * Return the height of the output slice
+             */
             if (frameFinished > 0) {
-                
+                code = sws_scale(
+                        swContext,
+                        videoFrame->data,
+                        videoFrame->linesize,
+                        0,
+                        videoStream->codec->height,
+                        videoFrameRGB->data,
+                        videoFrameRGB->linesize
+                );
+
+                cout << "Out height" << endl;
             }
+
+            av_free_packet(packet);
         }
     }
 
