@@ -33,6 +33,9 @@ int main() {
         cout << "Error on avformat_find_stream_info was cause with code " << av_err2str(code) << endl;
     }
 
+    av_dump_format(inputFormatContext, 0, nullptr, 0);
+
+
     auto videoFrame = av_frame_alloc();
     auto videoFrameRGB = av_frame_alloc();
 
