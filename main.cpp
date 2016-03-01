@@ -234,4 +234,8 @@ void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inp
 
     tmp = avcodec_encode_video2(outCodecCtx, &outPacket, pFrame, &gotFrame);
     cout << "Encode status " << tmp << endl;
+
+    FILE * outPng = fopen("/Users/ovr/projects/ovr/1.png", "wb");
+    fwrite(outPacket.data, outPacket.size, 1, outPng);
+    fclose(outPng);
 }
