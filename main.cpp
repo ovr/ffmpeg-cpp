@@ -35,7 +35,7 @@ int main() {
         return 0;
     }
 
-    av_dump_format(inputFormatContext, 0, nullptr, 0);
+    //av_dump_format(inputFormatContext, 0, nullptr, 0);
 
     for (int i = 0; i < inputFormatContext->nb_streams; i++) {
         auto *currentStream = inputFormatContext->streams[i];
@@ -98,12 +98,18 @@ int main() {
         videoStream->codec->width,
         videoStream->codec->height,
         PIX_FMT_RGB24,
-        0,
+        SWS_FAST_BILINEAR,
         nullptr,
         nullptr,
         nullptr
     );
 
+    /**
+     * We need to count and fill buffe to videoFrameRGB via it's empty
+     */
+    int num_bytes = avpicture_get_size(AV_PIX_FMT_RGB24, videoStream->codec->width, videoStream->codec->height);
+    uint8_t* frame2_buffer = (uint8_t *) av_malloc(num_bytes * sizeof(uint8_t));
+    avpicture_fill((AVPicture*) videoFrameRGB, frame2_buffer, AV_PIX_FMT_RGB24, videoStream->codec->width, videoStream->codec->height);
 
     AVPacket *packet;
     int frameFinished;
