@@ -150,6 +150,8 @@ int main() {
                 );
 
                 cout << "Out height" << code << endl;
+                av_free_packet(packet);
+                break;
             }
         }
 
