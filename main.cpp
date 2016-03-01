@@ -7,6 +7,8 @@ extern "C" {
 #include <libavutil/avutil.h>
 }
 
+void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inputFormatContext);
+
 using namespace std;
 
 int main() {
@@ -111,6 +113,10 @@ int main() {
     uint8_t* frame2_buffer = (uint8_t *) av_malloc(num_bytes * sizeof(uint8_t));
     avpicture_fill((AVPicture*) videoFrameRGB, frame2_buffer, AV_PIX_FMT_RGB24, videoStream->codec->width, videoStream->codec->height);
 
+    videoFrameRGB->format = AVPixelFormat::AV_PIX_FMT_RGB24;
+    videoFrameRGB->width = videoStream->codec->width;
+    videoFrameRGB->height = videoStream->codec->height;
+
     AVPacket *packet;
     int frameFinished;
     packet = new(AVPacket);
@@ -157,6 +163,10 @@ int main() {
 
                 cout << "Out height" << code << endl;
                 av_free_packet(packet);
+
+
+                saveVideoFrame(videoFrameRGB, videoStream, inputFormatContext);
+
                 break;
             }
         }
@@ -165,4 +175,63 @@ int main() {
     }
 
     return 0;
+}
+
+void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inputFormatContext) {
+    int tmp;
+
+//    AVCodec *imageCodec = nullptr;
+//    imageCodec = avcodec_find_encoder(CODEC_ID_PNG);
+//    if (imageCodec == nullptr) {
+//        cout << "Cannot open image codec :(" << endl;
+//        return;
+//    }
+//
+//    AVCodecContext *imageCodecContext = avcodec_alloc_context3(imageCodec);
+//
+//    imageCodecContext->bit_rate      = videoStream->codec->bit_rate;
+//    imageCodecContext->width         = pFrame->width;
+//    imageCodecContext->height        = pFrame->height;
+//    imageCodecContext->pix_fmt       = PIX_FMT_RGB24;
+//    imageCodecContext->codec_id      = CODEC_ID_PNG;
+//    imageCodecContext->codec_type    = AVMEDIA_TYPE_VIDEO;
+//    imageCodecContext->time_base.num = videoStream->codec->time_base.num;
+//    imageCodecContext->time_base.den = videoStream->codec->time_base.den;
+//
+//    tmp = avcodec_open2(imageCodecContext, imageCodec, nullptr);
+//    if (tmp < 0) {
+//        cout << "Cannot avcodec_open2 for image :(" << endl;
+//        return;
+//    }
+
+
+    AVCodec *outCodec = avcodec_find_encoder(CODEC_ID_PNG);
+    if (!outCodec) {
+        cout << "Cannot avcodec_find_encoder for image :(" << endl;
+        return;
+    }
+
+    AVCodecContext *outCodecCtx = avcodec_alloc_context3(outCodec);
+
+    outCodecCtx->width = videoStream->codec->width;
+    outCodecCtx->height = videoStream->codec->height;
+    outCodecCtx->pix_fmt = PIX_FMT_RGB24;
+    outCodecCtx->codec_type = AVMEDIA_TYPE_VIDEO;
+    outCodecCtx->time_base.num = videoStream->codec->time_base.num;
+    outCodecCtx->time_base.den = videoStream->codec->time_base.den;
+
+    tmp = avcodec_open2(outCodecCtx, outCodec, nullptr);
+    if (tmp < 0) {
+        cout << "Cannot avcodec_open2 for image :(" << endl;
+        return;
+    }
+
+    AVPacket outPacket;
+    av_init_packet(&outPacket);
+    outPacket.size = 0;
+    outPacket.data = NULL;
+    int gotFrame = 0;
+
+    tmp = avcodec_encode_video2(outCodecCtx, &outPacket, pFrame, &gotFrame);
+    cout << "Encode status " << tmp << endl;
 }
