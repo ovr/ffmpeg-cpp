@@ -9,6 +9,17 @@ extern "C" {
 
 void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inputFormatContext);
 
+extern AVPacket* getNewPacket()
+{
+    AVPacket *packet = new(AVPacket);
+    av_init_packet(packet);
+
+    packet->size = 0;
+    packet->data = nullptr;
+
+    return packet;
+}
+
 using namespace std;
 
 int main() {
@@ -226,16 +237,13 @@ void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inp
         return;
     }
 
-    AVPacket outPacket;
-    av_init_packet(&outPacket);
-    outPacket.size = 0;
-    outPacket.data = NULL;
+    auto packet = getNewPacket();
     int gotFrame = 0;
 
-    tmp = avcodec_encode_video2(outCodecCtx, &outPacket, pFrame, &gotFrame);
+    tmp = avcodec_encode_video2(outCodecCtx, packet, pFrame, &gotFrame);
     cout << "Encode status " << tmp << endl;
 
-    FILE * outPng = fopen("/Users/ovr/projects/ovr/1.png", "wb");
-    fwrite(outPacket.data, outPacket.size, 1, outPng);
+    FILE * outPng = fopen("/Users/ovr/projects/ovr/test/1.png", "wb");
+    fwrite(packet->data, packet->size, 1, outPng);
     fclose(outPng);
 }
