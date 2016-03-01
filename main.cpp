@@ -146,7 +146,7 @@ int main() {
                         videoFrameRGB->linesize
                 );
 
-                cout << "Out height" << endl;
+                cout << "Out height" << code << endl;
             }
         }
 
