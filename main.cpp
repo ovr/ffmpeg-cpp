@@ -181,6 +181,10 @@ int main() {
         av_free_packet(packet);
     }
 
+
+    av_frame_free(&videoFrame);
+    av_frame_free(&videoFrameRGB);
+
     return 0;
 }
 
