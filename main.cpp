@@ -122,12 +122,7 @@ int main() {
         nullptr
     );
 
-    /**
-     * We need to count and fill buffe to videoFrameRGB via it's empty
-     */
-    int num_bytes = avpicture_get_size(imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
-    uint8_t* frame2_buffer = (uint8_t *) av_malloc(num_bytes * sizeof(uint8_t));
-    avpicture_fill((AVPicture*) videoFrameRGB, frame2_buffer, imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
+    avpicture_alloc((AVPicture*) videoFrameRGB, imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
 
     AVPacket *packet;
     int frameFinished;
