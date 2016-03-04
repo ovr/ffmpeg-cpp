@@ -173,7 +173,6 @@ int main() {
 
 
                 saveVideoFrame(videoFrameRGB, videoStream, inputFormatContext);
-
                 break;
             }
         }
@@ -221,4 +220,6 @@ void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inp
     FILE * outPng = fopen("/Users/ovr/projects/ovr/test/1.png", "wb");
     fwrite(packet->data, packet->size, 1, outPng);
     fclose(outPng);
+
+    avcodec_free_context(&outCodecCtx);
 }
