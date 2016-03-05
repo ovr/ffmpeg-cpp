@@ -184,6 +184,8 @@ int main() {
     av_frame_free(&videoFrame);
     av_frame_free(&videoFrameRGB);
 
+    sws_freeContext(swContext);
+
     return 0;
 }
 
