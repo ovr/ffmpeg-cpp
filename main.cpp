@@ -30,7 +30,7 @@ int main() {
     avcodec_register_all();
 
 
-    FormatContext *inputFormatContext;
+    auto inputFormatContext = new (FormatContext);
 
     auto code = inputFormatContext->openFile(filename);
     if (code < 0) {

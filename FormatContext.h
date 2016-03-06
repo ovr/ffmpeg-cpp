@@ -16,6 +16,12 @@ protected:
     AVFormatContext *formatContext;
 public:
     int openFile(std::string url);
+    FormatContext() {
+        this->formatContext = avformat_alloc_context();
+    }
+    ~FormatContext() {
+        avformat_free_context(this->formatContext);
+    }
 };
 
 
