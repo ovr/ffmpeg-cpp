@@ -17,6 +17,8 @@ int main() {
         inputFormatContext->openFile(filename);
         inputFormatContext->findStreamInfo();
         inputFormatContext->dump();
+
+        cout << "Streams-count " << int(inputFormatContext->streamsCount()) << endl;
     } catch (int e) {
         cout << av_err2str(e) << endl;
     }

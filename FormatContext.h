@@ -31,6 +31,8 @@ public:
     void findStreamInfo();
 
     void dump();
+
+    uint8_t streamsCount();
 };
 
 

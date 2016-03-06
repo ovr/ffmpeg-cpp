@@ -21,3 +21,7 @@ void FormatContext::findStreamInfo() {
 void FormatContext::dump() {
     av_dump_format(this->formatContext, 0, nullptr, 0);
 }
+
+uint8_t FormatContext::streamsCount() {
+    return (uint8_t) this->formatContext->nb_streams;
+}
