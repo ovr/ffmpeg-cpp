@@ -27,6 +27,8 @@ public:
     ~FormatContext() {
         avformat_free_context(this->formatContext);
     }
+
+    void findStreamInfo();
 };
 
 

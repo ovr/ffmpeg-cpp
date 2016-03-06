@@ -10,3 +10,10 @@ void FormatContext::openFile(std::string url) {
         throw tmp;
     }
 }
+
+void FormatContext::findStreamInfo() {
+    auto tmp = avformat_find_stream_info(this->formatContext, nullptr);
+    if (tmp < 0) {
+        throw tmp;
+    }
+}

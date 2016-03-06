@@ -15,18 +15,12 @@ int main() {
 
     try {
         inputFormatContext->openFile(filename);
+        inputFormatContext->findStreamInfo();
     } catch (int e) {
         cout << av_err2str(e) << endl;
     }
 }
 
-//
-//    //  * @return >=0 if OK, AVERROR_xxx on error
-//    code = avformat_find_stream_info(inputFormatContext, nullptr);
-//    if (code < 0) {
-//        cout << "Error on avformat_find_stream_info was cause with code " << av_err2str(code) << endl;
-//        return 0;
-//    }
 //
 //    //av_dump_format(inputFormatContext, 0, nullptr, 0);
 //
