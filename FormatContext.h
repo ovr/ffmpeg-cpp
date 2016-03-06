@@ -7,6 +7,11 @@
 
 extern "C" {
 #include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libswscale/swscale.h>
+#include <libavutil/error.h>
+#include <libavutil/avutil.h>
 };
 
 #include <string>
@@ -15,7 +20,7 @@ class FormatContext {
 protected:
     AVFormatContext *formatContext;
 public:
-    int openFile(std::string url);
+    void openFile(std::string url);
     FormatContext() {
         this->formatContext = avformat_alloc_context();
     }

@@ -1,26 +1,6 @@
 #include <iostream>
 #include "FormatContext.h"
 
-extern "C" {
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-#include <libavutil/avutil.h>
-}
-
-void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inputFormatContext);
-
-extern AVPacket* getNewPacket()
-{
-    AVPacket *packet = new(AVPacket);
-    av_init_packet(packet);
-
-    packet->size = 0;
-    packet->data = nullptr;
-
-    return packet;
-}
-
 using namespace std;
 
 int main() {
@@ -32,10 +12,11 @@ int main() {
 
     auto inputFormatContext = new (FormatContext);
 
-    auto code = inputFormatContext->openFile(filename);
-    if (code < 0) {
-        cout << "Error on avformat_open_input was cause with code " << av_err2str(code) << endl;
-        return 0;
+
+    try {
+        inputFormatContext->openFile(filename);
+    } catch (int e) {
+        cout << av_err2str(e) << endl;
     }
 }
 
