@@ -16,13 +16,14 @@ int main() {
     try {
         inputFormatContext->openFile(filename);
         inputFormatContext->findStreamInfo();
+        inputFormatContext->dump();
     } catch (int e) {
         cout << av_err2str(e) << endl;
     }
 }
 
 //
-//    //av_dump_format(inputFormatContext, 0, nullptr, 0);
+//    av_dump_format(inputFormatContext, 0, nullptr, 0);
 //
 //    for (int i = 0; i < inputFormatContext->nb_streams; i++) {
 //        auto *currentStream = inputFormatContext->streams[i];

@@ -17,3 +17,7 @@ void FormatContext::findStreamInfo() {
         throw tmp;
     }
 }
+
+void FormatContext::dump() {
+    av_dump_format(this->formatContext, 0, nullptr, 0);
+}

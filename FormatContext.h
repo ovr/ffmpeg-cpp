@@ -29,6 +29,8 @@ public:
     }
 
     void findStreamInfo();
+
+    void dump();
 };
 
 
