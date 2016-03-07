@@ -10,8 +10,7 @@ int main() {
     avcodec_register_all();
 
 
-    auto inputFormatContext = new (FormatContext);
-
+    auto inputFormatContext = new (AvFormat::FormatContext);
 
     try {
         inputFormatContext->openFile(filename);
@@ -19,6 +18,7 @@ int main() {
         inputFormatContext->dump();
 
         cout << "Streams-count " << int(inputFormatContext->streamsCount()) << endl;
+
     } catch (int e) {
         cout << av_err2str(e) << endl;
     }
