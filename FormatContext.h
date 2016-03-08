@@ -16,24 +16,25 @@ extern "C" {
 
 #include <string>
 
-class FormatContext {
-protected:
-    AVFormatContext *formatContext;
-public:
-    void openFile(std::string url);
-    FormatContext() {
-        this->formatContext = avformat_alloc_context();
-    }
-    ~FormatContext() {
-        avformat_free_context(this->formatContext);
-    }
+namespace AvFormat {
+    class FormatContext {
+    protected:
+        AVFormatContext *formatContext;
+    public:
+        void openFile(std::string url) throw(int);
+        FormatContext() {
+            this->formatContext = avformat_alloc_context();
+        }
+        ~FormatContext() {
+            avformat_free_context(this->formatContext);
+        }
 
-    void findStreamInfo();
+        void findStreamInfo() throw(int);
 
-    void dump();
+        void dump() throw(int);
 
-    uint8_t streamsCount();
-};
-
+        uint8_t streamsCount() throw(int);
+    };
+}
 
 #endif //FFMPEG_TEST_FORMATCONTEXT_H

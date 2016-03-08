@@ -4,24 +4,26 @@
 
 #include "FormatContext.h"
 
-void FormatContext::openFile(std::string url) {
-    auto tmp = avformat_open_input(&this->formatContext, url.c_str(), nullptr, nullptr);
-    if (tmp < 0) {
-        throw tmp;
+namespace AvFormat {
+    void FormatContext::openFile(std::string url) throw(int) {
+        auto tmp = avformat_open_input(&this->formatContext, url.c_str(), nullptr, nullptr);
+        if (tmp < 0) {
+            throw tmp;
+        }
     }
-}
 
-void FormatContext::findStreamInfo() {
-    auto tmp = avformat_find_stream_info(this->formatContext, nullptr);
-    if (tmp < 0) {
-        throw tmp;
+    void FormatContext::findStreamInfo() throw(int) {
+        auto tmp = avformat_find_stream_info(this->formatContext, nullptr);
+        if (tmp < 0) {
+            throw tmp;
+        }
     }
-}
 
-void FormatContext::dump() {
-    av_dump_format(this->formatContext, 0, nullptr, 0);
-}
+    void FormatContext::dump() throw(int) {
+        av_dump_format(this->formatContext, 0, nullptr, 0);
+    }
 
-uint8_t FormatContext::streamsCount() {
-    return (uint8_t) this->formatContext->nb_streams;
+    uint8_t FormatContext::streamsCount() throw(int) {
+        return (uint8_t) this->formatContext->nb_streams;
+    }
 }
