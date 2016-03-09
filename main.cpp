@@ -6,10 +6,10 @@ using namespace std;
 int main() {
     string filename = "/Users/ovr/ClionProjects/ffmpeg-test/1.mp4";
 
-    AvFormat::av_register_all();
-    AvFormat::avcodec_register_all();
+    AVFormat::av_register_all();
+    AVFormat::avcodec_register_all();
     
-    auto inputFormatContext = new (AvFormat::FormatContext);
+    auto inputFormatContext = new (AVFormat::FormatContext);
 
     try {
         inputFormatContext->openFile(filename);
@@ -19,11 +19,11 @@ int main() {
         cout << "Streams-count " << int(inputFormatContext->streamsCount()) << endl;
         cout << "Probe score " << inputFormatContext->getProbeScore() << endl;
 
-        cout << AvFormat::avformat_version() << endl;
+        cout << AVFormat::avformat_version() << endl;
 
         inputFormatContext->closeInput();
     } catch (int e) {
-        cout << AvFormat::av_err2str(e) << endl;
+        cout << AVFormat::av_err2str(e) << endl;
     }
 
     delete inputFormatContext;

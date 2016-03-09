@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace AvFormat {
+namespace AVFormat {
     extern "C" {
         #include <libavformat/avformat.h>
         #include <libavcodec/avcodec.h>
