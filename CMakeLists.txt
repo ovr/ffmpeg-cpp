@@ -7,7 +7,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 find_package(FFMPEG REQUIRED)
 include_directories(SYSTEM ${FFMPEG_INCLUDE_DIR}) # use SYSTEM to suppress FFMPEG compile warnings
 
-set(SOURCE_FILES main.cpp FormatContext.cpp FormatContext.h)
+set(SOURCE_FILES main.cpp src/AVFormat/Context.cpp src/AVFormat/Context.h)
 add_executable(ffmpeg_test ${SOURCE_FILES})
 
 MESSAGE(${FFMPEG_LIBRARIES})

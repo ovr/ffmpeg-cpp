@@ -5,10 +5,6 @@
 #ifndef FFMPEG_TEST_FORMATCONTEXT_H
 #define FFMPEG_TEST_FORMATCONTEXT_H
 
-//extern "C" {
-//
-//};
-
 #include <string>
 
 namespace AvFormat {

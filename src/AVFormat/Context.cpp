@@ -2,7 +2,7 @@
 // Created by Дмитрий Пацура on 06.03.16.
 //
 
-#include "FormatContext.h"
+#include "Context.h"
 
 namespace AvFormat {
     void FormatContext::openFile(std::string url) throw(int) {
