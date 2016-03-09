@@ -23,6 +23,8 @@ int main() {
     } catch (int e) {
         cout << av_err2str(e) << endl;
     }
+
+    delete inputFormatContext;
 }
 
 //
