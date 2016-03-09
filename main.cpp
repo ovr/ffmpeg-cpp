@@ -27,9 +27,12 @@ int main() {
             cout << "Stream (" << streamId << ")" << endl;
             cout << "\t Id " << stream->getId() << endl;
             cout << "\t Index " << stream->getIndex() << endl;
+            cout << "\t Duration " << stream->getDuration() << endl;
+            cout << "\t Frames Count " << stream->framesCount() << endl;
         }
 
-        cout << CFFmpeg::avformat_version() << endl;
+        cout << endl << endl;
+        cout << "Version of avformat " << CFFmpeg::avformat_version() << endl;
 
         inputFormatContext->closeInput();
     } catch (int e) {

@@ -13,5 +13,13 @@ namespace FFmpeg {
         int Stream::getIndex() {
             return this->stream->index;
         }
+
+        int Stream::getDuration() {
+            return int(this->stream->duration);
+        }
+
+        int Stream::framesCount() {
+            return this->stream->nb_frames;
+        }
     }
 }

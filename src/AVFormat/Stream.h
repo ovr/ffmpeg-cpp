@@ -20,6 +20,10 @@ namespace FFmpeg {
             int getId();
 
             int getIndex();
+
+            int getDuration();
+
+            int framesCount();
         };
     }
 }
