@@ -4,6 +4,10 @@
 
 #include "Codec.h"
 
-int FFmpeg::Codec::Codec::getId() {
-    return this->codec->id;
+namespace FFmpeg {
+    namespace Codec {
+        int Codec::getId() {
+            return 0;
+        }
+    }
 }

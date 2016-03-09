@@ -1,15 +1,16 @@
 #include <iostream>
-#include "src/AVFormat/Context.h"
+
+#include "src/FFmpeg.h"
 
 using namespace std;
 
 int main() {
     string filename = "/Users/ovr/ClionProjects/ffmpeg-test/1.mp4";
 
-    AVFormat::av_register_all();
-    AVFormat::avcodec_register_all();
+    CAVCodec::av_register_all();
+    CAVCodec::avcodec_register_all();
     
-    auto inputFormatContext = new (AVFormat::FormatContext);
+    auto inputFormatContext = new (FFmpeg::AVFormat::FormatContext);
 
     try {
         inputFormatContext->openFile(filename);
@@ -22,11 +23,11 @@ int main() {
         auto *codec = inputFormatContext->getVideoCodec();
         cout << "Probe score " << codec->getId() << endl;
 
-        cout << AVFormat::avformat_version() << endl;
+        cout << CAVCodec::avformat_version() << endl;
 
         inputFormatContext->closeInput();
     } catch (int e) {
-        cout << AVFormat::av_err2str(e) << endl;
+        cout << CAVCodec::av_err2str(e) << endl;
     }
 
     delete inputFormatContext;

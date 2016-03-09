@@ -5,18 +5,26 @@
 #ifndef FFMPEG_TEST_CODEC_H
 #define FFMPEG_TEST_CODEC_H
 
-extern "C" {
-    #include <libavcodec/avcodec.h>
+namespace CAVCodec {
+    extern "C" {
+        #include <libavformat/avformat.h>
+        #include <libavutil/error.h>
+        #include <libavutil/avutil.h>
+        #include <libswscale/swscale.h>
+        #include <libavutil/error.h>
+        #include <libavutil/avutil.h>
+        #include <libavformat/avformat.h>
+        #include <libavcodec/avcodec.h>
+    }
 }
-
 
 namespace FFmpeg {
     namespace Codec {
         class Codec {
         protected:
-            AVCodec *codec;
+            CAVCodec::AVCodec *codec;
         public:
-            Codec(AVCodec *codec) {
+            Codec(CAVCodec::AVCodec *codec) {
                 this->codec = codec;
             }
 

@@ -6,11 +6,12 @@
 #define FFMPEG_TEST_FORMATCONTEXT_H
 
 #include <string>
+#include "../AVCodec/Codec.h"
 
-namespace AVFormat {
+
+namespace CAVFormat {
     extern "C" {
         #include <libavformat/avformat.h>
-        #include "../../src/AVCodec/Codec.h"
         #include <libavutil/error.h>
         #include <libavutil/avutil.h>
         #include <libswscale/swscale.h>
@@ -18,31 +19,37 @@ namespace AVFormat {
         #include <libavutil/avutil.h>
         #include <libavformat/avformat.h>
     }
+}
 
-    class FormatContext {
-    protected:
-        AVFormatContext *formatContext;
-    public:
-        void openFile(std::string url) throw(int);
-        FormatContext() {
-            this->formatContext = avformat_alloc_context();
-        }
-        ~FormatContext() {
-            avformat_free_context(this->formatContext);
-        }
+namespace FFmpeg {
+    namespace AVFormat {
+        class FormatContext {
+        protected:
+            CAVCodec::AVFormatContext *formatContext;
+        public:
+            void openFile(std::string url) throw(int);
 
-        void findStreamInfo() throw(int);
+            FormatContext() {
+                this->formatContext = CAVCodec::avformat_alloc_context();
+            }
 
-        void dump() throw(int);
+            ~FormatContext() {
+                CAVCodec::avformat_free_context(this->formatContext);
+            }
 
-        uint8_t streamsCount() throw(int);
+            void findStreamInfo() throw(int);
 
-        int getProbeScore();
+            void dump() throw(int);
 
-        FFmpeg::Codec::Codec* getVideoCodec();
+            uint8_t streamsCount() throw(int);
 
-        void closeInput();
-    };
+            int getProbeScore();
+
+            FFmpeg::Codec::Codec *getVideoCodec();
+
+            void closeInput();
+        };
+    }
 }
 
 #endif //FFMPEG_TEST_FORMATCONTEXT_H
