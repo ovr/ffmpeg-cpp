@@ -34,4 +34,8 @@ namespace AvFormat {
     void FormatContext::closeInput() {
         avformat_close_input(&this->formatContext);
     }
+
+    AVCodec *FormatContext::getVideoCodec() {
+        return av_format_get_video_codec(this->formatContext);
+    }
 }

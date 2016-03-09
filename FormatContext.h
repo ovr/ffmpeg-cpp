@@ -44,6 +44,8 @@ namespace AvFormat {
 
         int getProbeScore();
 
+        AVCodec* getVideoCodec();
+
         void closeInput();
     };
 }
