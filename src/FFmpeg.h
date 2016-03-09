@@ -7,6 +7,7 @@
 
 #include "CFFmpeg.h"
 #include "AVCodec/Codec.h"
+#include "AVFormat/Stream.h"
 #include "AVFormat/Context.h"
 
 #endif //FFMPEG_TEST_FFMPEG_H

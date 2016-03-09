@@ -8,6 +8,7 @@
 #include <string>
 #include "../CFFmpeg.h"
 #include "../AVCodec/Codec.h"
+#include "Stream.h"
 
 namespace FFmpeg {
     namespace AVFormat {
@@ -35,7 +36,7 @@ namespace FFmpeg {
 
             FFmpeg::Codec::Codec *getVideoCodec();
 
-            CFFmpeg::AVStream *getStream(int id);
+            Stream *getStream(int id);
 
             void closeInput();
         };

@@ -17,8 +17,11 @@ set(
         src/AVFormat/Context.h
         src/AVCodec/Codec.cpp
         src/AVCodec/Codec.h
+        src/AVFormat/Stream.cpp
+        src/AVFormat/Stream.h
         src/FFmpeg.h
-        src/CFFmpeg.h)
+        src/CFFmpeg.h
+)
 
 add_executable(ffmpeg_test ${SOURCE_FILES})
 

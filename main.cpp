@@ -25,7 +25,8 @@ int main() {
         for (int streamId = 0; streamId < inputFormatContext->streamsCount(); streamId++) {
             auto *stream = inputFormatContext->getStream(streamId);
             cout << "Stream (" << streamId << ")" << endl;
-            cout << "\t Codec " << stream->codec << endl;
+            cout << "\t Id " << stream->getId() << endl;
+            cout << "\t Index " << stream->getIndex() << endl;
         }
 
         cout << CFFmpeg::avformat_version() << endl;
