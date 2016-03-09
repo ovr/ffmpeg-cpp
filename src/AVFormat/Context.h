@@ -35,6 +35,8 @@ namespace FFmpeg {
 
             FFmpeg::Codec::Codec *getVideoCodec();
 
+            CFFmpeg::AVStream *getStream(int id);
+
             void closeInput();
         };
     }

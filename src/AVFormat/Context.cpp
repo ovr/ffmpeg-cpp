@@ -39,5 +39,9 @@ namespace FFmpeg {
         FFmpeg::Codec::Codec *FormatContext::getVideoCodec() {
             return new FFmpeg::Codec::Codec(av_format_get_video_codec(this->formatContext));
         }
+
+        CFFmpeg::AVStream *FormatContext::getStream(int id) {
+            return this->formatContext->streams[id];
+        }
     }
 }

@@ -15,14 +15,18 @@ int main() {
     try {
         inputFormatContext->openFile(filename);
         inputFormatContext->findStreamInfo();
-        inputFormatContext->dump();
+        //inputFormatContext->dump();
 
         cout << "Streams-count " << int(inputFormatContext->streamsCount()) << endl;
         cout << "Probe score " << inputFormatContext->getProbeScore() << endl;
 
-        auto *codec = inputFormatContext->getVideoCodec();
-        cout << "Codec id g" << codec->getId() << endl;
-        cout << "Codec name" << codec->getName() << endl;
+        cout << "Stream count " << inputFormatContext->streamsCount() << endl;
+
+        for (int streamId = 0; streamId < inputFormatContext->streamsCount(); streamId++) {
+            auto *stream = inputFormatContext->getStream(streamId);
+            cout << "Stream (" << streamId << ")" << endl;
+            cout << "\t Codec " << stream->codec << endl;
+        }
 
         cout << CFFmpeg::avformat_version() << endl;
 
