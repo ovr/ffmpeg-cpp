@@ -19,7 +19,7 @@ namespace FFmpeg {
         }
 
         int Stream::framesCount() {
-            return this->stream->nb_frames;
+            return int(this->stream->nb_frames);
         }
     }
 }
