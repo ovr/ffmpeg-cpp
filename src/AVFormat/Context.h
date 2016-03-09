@@ -10,10 +10,9 @@
 namespace AVFormat {
     extern "C" {
         #include <libavformat/avformat.h>
-        #include <libavcodec/avcodec.h>
+        #include "../../src/AVCodec/Codec.h"
         #include <libavutil/error.h>
         #include <libavutil/avutil.h>
-        #include <libavcodec/avcodec.h>
         #include <libswscale/swscale.h>
         #include <libavutil/error.h>
         #include <libavutil/avutil.h>
@@ -40,7 +39,7 @@ namespace AVFormat {
 
         int getProbeScore();
 
-        AVCodec* getVideoCodec();
+        FFmpeg::Codec::Codec* getVideoCodec();
 
         void closeInput();
     };

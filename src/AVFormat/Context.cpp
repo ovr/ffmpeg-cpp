@@ -35,7 +35,7 @@ namespace AVFormat {
         avformat_close_input(&this->formatContext);
     }
 
-    AVCodec *FormatContext::getVideoCodec() {
-        return av_format_get_video_codec(this->formatContext);
+    FFmpeg::Codec::Codec *FormatContext::getVideoCodec() {
+        return new FFmpeg::Codec::Codec(av_format_get_video_codec(this->formatContext));
     }
 }

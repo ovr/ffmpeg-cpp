@@ -19,6 +19,9 @@ int main() {
         cout << "Streams-count " << int(inputFormatContext->streamsCount()) << endl;
         cout << "Probe score " << inputFormatContext->getProbeScore() << endl;
 
+        auto *codec = inputFormatContext->getVideoCodec();
+        cout << "Probe score " << codec->getId() << endl;
+
         cout << AVFormat::avformat_version() << endl;
 
         inputFormatContext->closeInput();

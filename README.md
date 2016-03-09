@@ -1,7 +1,7 @@
-FFMpeg C++ Wrapper
+FFmpeg C++ Wrapper
 ==================
 
-> FFMpeg C++ wrapper on C library via It's rly useful (classes, exceptions, autocomplete with normal doc)
+> FFmpeg C++ wrapper on C library via It's rly useful (classes, exceptions, autocomplete with normal doc)
 
 # LICENSE
 
