@@ -5,6 +5,7 @@
 #ifndef FFMPEG_TEST_FFMPEG_H
 #define FFMPEG_TEST_FFMPEG_H
 
+#include "CFFmpeg.h"
 #include "AVFormat/Context.h"
 #include "AVCodec/Codec.h"
 

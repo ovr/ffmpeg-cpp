@@ -7,8 +7,8 @@ using namespace std;
 int main() {
     string filename = "/Users/ovr/ClionProjects/ffmpeg-test/1.mp4";
 
-    CAVCodec::av_register_all();
-    CAVCodec::avcodec_register_all();
+    CFFmpeg::av_register_all();
+    CFFmpeg::avcodec_register_all();
     
     auto inputFormatContext = new (FFmpeg::AVFormat::FormatContext);
 
@@ -23,11 +23,11 @@ int main() {
         auto *codec = inputFormatContext->getVideoCodec();
         cout << "Probe score " << codec->getId() << endl;
 
-        cout << CAVCodec::avformat_version() << endl;
+        cout << CFFmpeg::avformat_version() << endl;
 
         inputFormatContext->closeInput();
     } catch (int e) {
-        cout << CAVCodec::av_err2str(e) << endl;
+        cout << CFFmpeg::av_err2str(e) << endl;
     }
 
     delete inputFormatContext;
