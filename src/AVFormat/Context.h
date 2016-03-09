@@ -6,6 +6,7 @@
 #define FFMPEG_TEST_FORMATCONTEXT_H
 
 #include <string>
+#include "../CFFmpeg.h"
 #include "../AVCodec/Codec.h"
 
 namespace FFmpeg {

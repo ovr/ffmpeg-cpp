@@ -22,6 +22,7 @@ int main() {
 
         auto *codec = inputFormatContext->getVideoCodec();
         cout << "Probe score " << codec->getId() << endl;
+        cout << "Probe score " << codec->getId() << endl;
 
         cout << CFFmpeg::avformat_version() << endl;
 
