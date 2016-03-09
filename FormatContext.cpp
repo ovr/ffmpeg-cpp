@@ -27,6 +27,10 @@ namespace AvFormat {
         return (uint8_t) this->formatContext->nb_streams;
     }
 
+    int FormatContext::getProbeScore() {
+        return av_format_get_probe_score(this->formatContext);
+    }
+
     void FormatContext::closeInput() {
         avformat_close_input(&this->formatContext);
     }

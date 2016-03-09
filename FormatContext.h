@@ -40,9 +40,11 @@ namespace AvFormat {
 
         void dump() throw(int);
 
-        void closeInput();
-
         uint8_t streamsCount() throw(int);
+
+        int getProbeScore();
+
+        void closeInput();
     };
 }
 

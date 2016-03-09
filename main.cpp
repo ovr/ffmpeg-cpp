@@ -17,6 +17,7 @@ int main() {
         inputFormatContext->dump();
 
         cout << "Streams-count " << int(inputFormatContext->streamsCount()) << endl;
+        cout << "Probe score " << inputFormatContext->getProbeScore() << endl;
 
         cout << AvFormat::avformat_version() << endl;
 
