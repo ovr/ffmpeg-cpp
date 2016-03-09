@@ -26,4 +26,8 @@ namespace AvFormat {
     uint8_t FormatContext::streamsCount() throw(int) {
         return (uint8_t) this->formatContext->nb_streams;
     }
+
+    void FormatContext::closeInput() {
+        avformat_close_input(&this->formatContext);
+    }
 }
