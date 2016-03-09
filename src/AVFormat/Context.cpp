@@ -6,25 +6,25 @@
 
 namespace FFmpeg {
     namespace AVFormat {
-        void FormatContext::openFile(std::string url) throw(int) {
+        void FormatContext::openFile(std::string url) throw(std::exception) {
             auto tmp = avformat_open_input(&this->formatContext, url.c_str(), nullptr, nullptr);
             if (tmp < 0) {
-                throw tmp;
+                throw std::runtime_error(CFFmpeg::av_err2str(tmp));
             }
         }
 
-        void FormatContext::findStreamInfo() throw(int) {
+        void FormatContext::findStreamInfo() throw(std::exception) {
             auto tmp = avformat_find_stream_info(this->formatContext, nullptr);
             if (tmp < 0) {
-                throw tmp;
+                throw std::runtime_error(CFFmpeg::av_err2str(tmp));
             }
         }
 
-        void FormatContext::dump() throw(int) {
+        void FormatContext::dump() {
             av_dump_format(this->formatContext, 0, nullptr, 0);
         }
 
-        uint8_t FormatContext::streamsCount() throw(int) {
+        uint8_t FormatContext::streamsCount() {
             return (uint8_t) this->formatContext->nb_streams;
         }
 

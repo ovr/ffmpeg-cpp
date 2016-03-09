@@ -16,7 +16,7 @@ namespace FFmpeg {
         protected:
             CFFmpeg::AVFormatContext *formatContext;
         public:
-            void openFile(std::string url) throw(int);
+            void openFile(std::string url) throw(std::exception);
 
             FormatContext() {
                 this->formatContext = CFFmpeg::avformat_alloc_context();
@@ -26,11 +26,11 @@ namespace FFmpeg {
                 CFFmpeg::avformat_free_context(this->formatContext);
             }
 
-            void findStreamInfo() throw(int);
+            void findStreamInfo() throw(std::exception);
 
-            void dump() throw(int);
+            void dump();
 
-            uint8_t streamsCount() throw(int);
+            uint8_t streamsCount();
 
             int getProbeScore();
 

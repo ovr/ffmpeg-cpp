@@ -35,8 +35,8 @@ int main() {
         cout << "Version of avformat " << CFFmpeg::avformat_version() << endl;
 
         inputFormatContext->closeInput();
-    } catch (int e) {
-        cout << CFFmpeg::av_err2str(e) << endl;
+    } catch (std::exception& e) {
+        cout << e.what() << endl;
     }
 
     delete inputFormatContext;
