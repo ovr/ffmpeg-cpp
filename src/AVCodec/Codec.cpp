@@ -7,7 +7,7 @@
 namespace FFmpeg {
     namespace Codec {
         int Codec::getId() {
-            return 0;
+            return this->codec->id;
         }
 
         std::string Codec::getName() {
