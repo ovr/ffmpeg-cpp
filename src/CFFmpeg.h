@@ -6,6 +6,11 @@
 #define FFMPEG_TEST_CFFMPEG_H
 
 namespace CFFmpeg {
+    #define CFFmpeg_CHECK_EXCEPTION(tmp) \
+        if (tmp < 0) { \
+            throw std::runtime_error(CFFmpeg::av_err2str(tmp)); \
+        } \
+
     extern "C" {
         #include <libavformat/avformat.h>
         #include <libavutil/error.h>
