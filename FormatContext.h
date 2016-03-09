@@ -5,18 +5,25 @@
 #ifndef FFMPEG_TEST_FORMATCONTEXT_H
 #define FFMPEG_TEST_FORMATCONTEXT_H
 
-extern "C" {
-#include <libavformat/avformat.h>
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libswscale/swscale.h>
-#include <libavutil/error.h>
-#include <libavutil/avutil.h>
-};
+//extern "C" {
+//
+//};
 
 #include <string>
 
 namespace AvFormat {
+    extern "C" {
+        #include <libavformat/avformat.h>
+        #include <libavcodec/avcodec.h>
+        #include <libavutil/error.h>
+        #include <libavutil/avutil.h>
+        #include <libavcodec/avcodec.h>
+        #include <libswscale/swscale.h>
+        #include <libavutil/error.h>
+        #include <libavutil/avutil.h>
+        #include <libavformat/avformat.h>
+    }
+
     class FormatContext {
     protected:
         AVFormatContext *formatContext;
