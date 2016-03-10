@@ -22,8 +22,8 @@ namespace FFmpeg {
             return int(this->stream->nb_frames);
         }
 
-        FFmpeg::Codec::CodecContext Stream::codecContext() {
-            return Codec::CodecContext(this->stream->codec);
+        FFmpeg::Codec::CodecContext* Stream::codecContext() {
+            return new Codec::CodecContext(this->stream->codec);
         }
     }
 }

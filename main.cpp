@@ -23,7 +23,7 @@ int main() {
         cout << "Stream count " << inputFormatContext->streamsCount() << endl;
 
         for (int streamId = 0; streamId < inputFormatContext->streamsCount(); streamId++) {
-            auto *stream = inputFormatContext->getStream(streamId);
+            auto stream = inputFormatContext->getStream(streamId);
             cout << "Stream (" << streamId << ")" << endl;
             cout << "\t Id " << stream->getId() << endl;
             cout << "\t Index " << stream->getIndex() << endl;
@@ -32,7 +32,7 @@ int main() {
 
             auto codecContext = stream->codecContext();
             cout << "\t CodecContext " << endl;
-            cout << "\t\t Bit rate " << codecContext.getBitRate() << endl;
+            cout << "\t\t Bit rate " << codecContext->getBitRate() << endl;
         }
 
         cout << endl << endl;

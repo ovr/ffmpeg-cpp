@@ -26,7 +26,7 @@ namespace FFmpeg {
 
             int framesCount();
 
-            FFmpeg::Codec::CodecContext codecContext();
+            FFmpeg::Codec::CodecContext* codecContext();
         };
     }
 }
