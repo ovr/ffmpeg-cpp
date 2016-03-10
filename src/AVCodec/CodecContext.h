@@ -20,7 +20,7 @@ namespace FFmpeg {
 
             int getBitRate();
 
-            FFmpeg::Codec::Codec *getCodec();
+            FFmpeg::Codec::Codec *getCodec() throw(std::exception);
         };
     }
 }

@@ -14,9 +14,12 @@ int FFmpeg::Codec::CodecContext::getBitRate() {
     return this->context->bit_rate;
 }
 
-FFmpeg::Codec::Codec *FFmpeg::Codec::CodecContext::getCodec() {
+FFmpeg::Codec::Codec *FFmpeg::Codec::CodecContext::getCodec() throw(std::exception) {
     auto codec = avcodec_find_decoder(this->context->codec_id);
-    avcodec_open2(this->context, codec, nullptr);
+    if (codec == nullptr) {
+        throw std::runtime_error("Cannot open codec");
+    }
 
+    CFFmpeg_CHECK_EXCEPTION(avcodec_open2(this->context, codec, nullptr))
     return new FFmpeg::Codec::Codec((CFFmpeg::AVCodec*)(this->context->codec));
 }
