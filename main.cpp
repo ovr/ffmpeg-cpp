@@ -29,6 +29,7 @@ int main() {
             cout << "\t Index " << stream->getIndex() << endl;
             cout << "\t Duration " << stream->getDuration() << endl;
             cout << "\t Frames Count " << stream->framesCount() << endl;
+            cout << "\t CodecContext " << stream->framesCount() << endl;
         }
 
         cout << endl << endl;
