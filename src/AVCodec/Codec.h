@@ -5,7 +5,6 @@
 #ifndef FFMPEG_TEST_CODEC_H
 #define FFMPEG_TEST_CODEC_H
 
-#include <string>
 #include "../CFFmpeg.h"
 
 namespace FFmpeg {

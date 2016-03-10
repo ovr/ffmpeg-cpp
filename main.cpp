@@ -33,6 +33,10 @@ int main() {
             auto codecContext = stream->codecContext();
             cout << "\t CodecContext " << endl;
             cout << "\t\t Bit rate " << codecContext->getBitRate() << endl;
+
+            auto codec = codecContext->getCodec();
+            cout << "\t CodecContext->Codec " << endl;
+            cout << "\t\t Name " << codec->getName() << endl;
         }
 
         cout << endl << endl;

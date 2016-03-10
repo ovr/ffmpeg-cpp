@@ -5,6 +5,8 @@
 #ifndef FFMPEG_TEST_CFFMPEG_H
 #define FFMPEG_TEST_CFFMPEG_H
 
+#include <string>
+
 namespace CFFmpeg {
     #define CFFmpeg_CHECK_EXCEPTION(tmp) \
         if (tmp < 0) { \

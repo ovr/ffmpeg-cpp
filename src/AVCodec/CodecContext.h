@@ -6,6 +6,7 @@
 #define FFMPEG_TEST_CODECCONTEXT_H
 
 #include "../CFFmpeg.h"
+#include "Codec.h"
 
 namespace FFmpeg {
     namespace Codec {
@@ -18,6 +19,8 @@ namespace FFmpeg {
             }
 
             int getBitRate();
+
+            FFmpeg::Codec::Codec *getCodec();
         };
     }
 }
