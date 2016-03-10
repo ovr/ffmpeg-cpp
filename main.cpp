@@ -24,23 +24,27 @@ int main() {
 
         for (int streamId = 0; streamId < inputFormatContext->streamsCount(); streamId++) {
             auto stream = inputFormatContext->getStream(streamId);
-            cout << "Stream (" << streamId << ")" << endl;
-            cout << "\t Id " << stream->getId() << endl;
-            cout << "\t Index " << stream->getIndex() << endl;
-            cout << "\t Duration " << stream->getDuration() << endl;
-            cout << "\t Frames Count " << stream->framesCount() << endl;
+            cout
+                << "Stream (" << streamId << ")" << endl
+                << "\t Id " << stream->getId() << endl
+                << "\t Index " << stream->getIndex() << endl
+                << "\t Duration " << stream->getDuration() << endl
+                << "\t Frames Count " << stream->framesCount() << endl;
 
             auto codecContext = stream->codecContext();
-            cout << "\t CodecContext " << endl;
-            cout << "\t\t Bit rate " << codecContext->getBitRate() << endl;
+            cout
+                << "\t CodecContext " << endl
+                << "\t\t Bit rate " << codecContext->getBitRate() << endl;
 
             auto codec = codecContext->getCodec();
-            cout << "\t CodecContext->Codec " << endl;
-            cout << "\t\t Name " << codec->getName() << endl;
+            cout
+                << "\t CodecContext->Codec " << endl
+                << "\t\t Name " << codec->getName() << endl;
         }
 
-        cout << endl << endl;
-        cout << "Version of avformat " << CFFmpeg::avformat_version() << endl;
+        cout
+            << endl << endl
+            << "Version of avformat " << CFFmpeg::avformat_version() << endl;
 
         inputFormatContext->closeInput();
     } catch (std::exception& e) {
