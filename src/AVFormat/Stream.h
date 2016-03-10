@@ -6,6 +6,7 @@
 #define FFMPEG_TEST_STREAM_H
 
 #include "../CFFmpeg.h"
+#include "../AVCodec/CodecContext.h"
 
 namespace FFmpeg {
     namespace AVFormat {
@@ -24,6 +25,8 @@ namespace FFmpeg {
             int getDuration();
 
             int framesCount();
+
+            FFmpeg::Codec::CodecContext codecContext();
         };
     }
 }

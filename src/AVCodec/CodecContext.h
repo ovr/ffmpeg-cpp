@@ -16,6 +16,8 @@ namespace FFmpeg {
             CodecContext(CFFmpeg::AVCodecContext *context) {
                 this->context = context;
             }
+
+            int getBitRate();
         };
     }
 }

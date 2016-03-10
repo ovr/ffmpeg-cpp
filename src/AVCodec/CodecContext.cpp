@@ -9,3 +9,7 @@ namespace FFmpeg {
 
     }
 }
+
+int FFmpeg::Codec::CodecContext::getBitRate() {
+    return this->context->bit_rate;
+}
