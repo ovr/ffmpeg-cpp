@@ -27,6 +27,8 @@ namespace FFmpeg {
             int framesCount();
 
             FFmpeg::Codec::CodecContext* codecContext();
+
+            bool isVideo();
         };
     }
 }
