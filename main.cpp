@@ -22,8 +22,14 @@ int main() {
 
         cout << "Stream count " << inputFormatContext->streamsCount() << endl;
 
+        FFmpeg::AVFormat::Stream *videoStream = nullptr;
+
         for (int streamId = 0; streamId < inputFormatContext->streamsCount(); streamId++) {
             auto stream = inputFormatContext->getStream(streamId);
+            if (stream->isVideo()) {
+                videoStream = stream;
+            }
+
             cout
                 << "Stream (" << streamId << ")" << endl
                 << "\t Id " << stream->getId() << endl
@@ -42,8 +48,17 @@ int main() {
                 << "\t\t Name " << codec->getName() << endl;
         }
 
+        cout << endl;
+
+        if (videoStream == nullptr) {
+            cout << "No video stream :(" << endl;
+            return 0;
+        } else {
+            cout << "Video stream found (" << videoStream->getIndex() << ", "  << videoStream->getId() << ")" << endl;
+        }
+
         cout
-            << endl << endl
+            << endl
             << "Version of avformat " << CFFmpeg::avformat_version() << endl;
 
         inputFormatContext->closeInput();
