@@ -23,3 +23,11 @@ FFmpeg::Codec::Codec *FFmpeg::Codec::CodecContext::getCodec() throw(std::excepti
     CFFmpeg_CHECK_EXCEPTION(avcodec_open2(this->context, codec, nullptr))
     return new FFmpeg::Codec::Codec((CFFmpeg::AVCodec*)(this->context->codec));
 }
+
+int FFmpeg::Codec::CodecContext::getWidth() {
+    return this->context->width;
+}
+
+int FFmpeg::Codec::CodecContext::getHeight() {
+    return this->context->height;
+}

@@ -57,14 +57,23 @@ int main() {
             cout << "Video stream found (" << videoStream->getIndex() << ", "  << videoStream->getId() << ")" << endl;
         }
 
+        cout << endl;
 
         auto *videoFrame = new(FFmpeg::AVUtil::Frame);
         auto *videoFrameRGB = new(FFmpeg::AVUtil::Frame);
 
+        cout << "VideoStream->CodecContext Width " << videoStream->codecContext()->getWidth() << endl;
+        cout << "VideoStream->CodecContext Height " << videoStream->codecContext()->getHeight() << endl;
+
+//        const auto imageQuantumFormat = AVPixelFormat::AV_PIX_FMT_RGB24;
+//        videoFrameRGB->format = imageQuantumFormat;
+//        videoFrameRGB->width = videoStream->codec->width;
+//        videoFrameRGB->height = videoStream->codec->height;
+
         cout
             << endl
             << "Version of avformat " << CFFmpeg::avformat_version() << endl;
-        
+
         delete videoFrameRGB;
         delete videoFrame;
 
@@ -76,67 +85,6 @@ int main() {
     delete inputFormatContext;
 }
 
-//
-//    av_dump_format(inputFormatContext, 0, nullptr, 0);
-//
-//    for (int i = 0; i < inputFormatContext->nb_streams; i++) {
-//        auto *currentStream = inputFormatContext->streams[i];
-//        if (currentStream->codec->codec_type == AVMEDIA_TYPE_VIDEO) {
-//            videoStream = currentStream;
-//        }
-//    }
-//
-//    if (videoStream == nullptr) {
-//        cout << "No video stream :(" << endl;
-//        return 0;
-//    }
-//
-//    cout << "Video Stream" << endl;
-//    cout << "Index " << videoStream->index << endl;
-//    cout << "Id " << videoStream->id << endl;
-//
-//
-//    AVCodec *videoCodec = nullptr;
-//    videoCodec = avcodec_find_decoder(videoStream->codec->codec_id);
-//    if (videoCodec == nullptr) {
-//        cout << "Cannot open codec decoder :(" << endl;
-//        return 0;
-//    }
-//
-//    /**
-//     * @return zero on success, a negative value on error
-//     */
-//    code = avcodec_open2(videoStream->codec, videoCodec, nullptr);
-//    if (code < 0) {
-//        cout << "Cannot avcodec_open2 for videoStream :(" << endl;
-//        return 0;
-//    }
-//
-//
-//    /**
-//     * Исходный кадр
-//     */
-//    AVFrame *videoFrame = nullptr;
-//    videoFrame = av_frame_alloc();
-//    if (videoFrame == nullptr) {
-//        cout << "Cannot allocate memory for videoFrame for next decoding for it" << endl;
-//        return 0;
-//    }
-//
-//    AVFrame *videoFrameRGB;
-//    videoFrameRGB = av_frame_alloc();
-//    if (videoFrameRGB == nullptr) {
-//        cout << "Cannot allocate memory for videoFrameRGB for next converting for it" << endl;
-//        return 0;
-//    }
-//
-//    cout << "VideoStream->CodecContext Width " << videoStream->codec->width << endl;
-//    cout << "VideoStream->CodecContext Height " << videoStream->codec->height << endl;
-//
-//    const auto imageQuantumFormat = AVPixelFormat::AV_PIX_FMT_RGB24;
-//    videoFrameRGB->format = imageQuantumFormat;
-//    videoFrameRGB->width = videoStream->codec->width;
-//    videoFrameRGB->height = videoStream->codec->height;
 //
 //    auto swContext = sws_getContext(
 //        videoStream->codec->width,
