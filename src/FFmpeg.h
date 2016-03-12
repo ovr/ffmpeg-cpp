@@ -11,5 +11,6 @@
 #include "AVFormat/Stream.h"
 #include "AVFormat/Context.h"
 #include "AVUtil/Frame.h"
+#include "SWScale/Context.h"
 
 #endif //FFMPEG_TEST_FFMPEG_H
