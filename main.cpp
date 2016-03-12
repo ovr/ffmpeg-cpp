@@ -64,6 +64,9 @@ int main() {
         cout
             << endl
             << "Version of avformat " << CFFmpeg::avformat_version() << endl;
+        
+        delete videoFrameRGB;
+        delete videoFrame;
 
         inputFormatContext->closeInput();
     } catch (std::exception& e) {

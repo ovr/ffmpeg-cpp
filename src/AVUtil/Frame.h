@@ -16,6 +16,9 @@ namespace FFmpeg {
             Frame() {
                 this->frame = CFFmpeg::av_frame_alloc();
             }
+            ~Frame() {
+                CFFmpeg::av_frame_free(&this->frame);
+            }
         };
     }
 }
