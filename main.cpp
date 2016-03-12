@@ -88,7 +88,7 @@ int main() {
 
         auto *packet = new(FFmpeg::AVCodec::Packet);
         int code = 0;
-        int frameFinished;
+        int *frameFinished = new(int);
 
         while (code == 0) {
             cout << "Read packet..." << endl;
@@ -97,7 +97,7 @@ int main() {
             if (code == 0 && packet->getStreamIndex() == videoStream->getIndex()) {
                 cout << "Tick video packet..." << endl;
 
-                auto buffer = CFFmpeg::avcodec_decode_video2(videoStream->codecContext()->getStruct(), videoFrame->getStruct(), &frameFinished, packet->getStruct());
+                auto buffer = videoStream->decodeVideoPacket(packet, frameFinished, videoFrame);
                 cout << "Decode buff " << buffer << endl;
             }
         }

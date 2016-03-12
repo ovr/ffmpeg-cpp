@@ -7,6 +7,8 @@
 
 #include "../CFFmpeg.h"
 #include "../AVCodec/CodecContext.h"
+#include "../AVUtil/Frame.h"
+#include "../AVCodec/Packet.h"
 
 namespace FFmpeg {
     namespace AVFormat {
@@ -27,6 +29,8 @@ namespace FFmpeg {
             int framesCount();
 
             FFmpeg::Codec::CodecContext* codecContext();
+
+            int decodeVideoPacket(FFmpeg::AVCodec::Packet *packet, int *frameFinished, FFmpeg::AVUtil::Frame *frame);
 
             bool isVideo();
 

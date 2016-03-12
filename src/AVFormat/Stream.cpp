@@ -26,6 +26,12 @@ namespace FFmpeg {
             return new Codec::CodecContext(this->stream->codec);
         }
 
+        int Stream::decodeVideoPacket(FFmpeg::AVCodec::Packet *packet, int *frameFinished, FFmpeg::AVUtil::Frame *frame) {
+            return CFFmpeg::avcodec_decode_video2(
+                    this->stream->codec, frame->getStruct(), frameFinished, packet->getStruct()
+            );
+        }
+
         bool Stream::isVideo() {
             return this->stream->codec->codec_type == CFFmpeg::AVMEDIA_TYPE_VIDEO;
         }
