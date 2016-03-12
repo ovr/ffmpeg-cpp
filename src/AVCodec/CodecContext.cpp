@@ -31,3 +31,7 @@ int FFmpeg::Codec::CodecContext::getWidth() {
 int FFmpeg::Codec::CodecContext::getHeight() {
     return this->context->height;
 }
+
+CFFmpeg::AVPixelFormat FFmpeg::Codec::CodecContext::getFormat() {
+    return this->context->pix_fmt;
+}

@@ -24,6 +24,8 @@ namespace FFmpeg {
 
             int getHeight();
 
+            CFFmpeg::AVPixelFormat getFormat();
+
             FFmpeg::Codec::Codec *getCodec() throw(std::exception);
         };
     }
