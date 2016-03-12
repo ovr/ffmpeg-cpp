@@ -29,5 +29,9 @@ namespace FFmpeg {
         bool Stream::isVideo() {
             return this->stream->codec->codec_type == CFFmpeg::AVMEDIA_TYPE_VIDEO;
         }
+
+        bool Stream::isAudio() {
+            return this->stream->codec->codec_type == CFFmpeg::AVMEDIA_TYPE_AUDIO;
+        }
     }
 }

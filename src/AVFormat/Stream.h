@@ -29,6 +29,8 @@ namespace FFmpeg {
             FFmpeg::Codec::CodecContext* codecContext();
 
             bool isVideo();
+
+            bool isAudio();
         };
     }
 }
