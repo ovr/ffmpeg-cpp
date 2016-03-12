@@ -19,6 +19,12 @@ namespace FFmpeg {
             ~Frame() {
                 CFFmpeg::av_frame_free(&this->frame);
             }
+
+            void setWidth(int width);
+
+            void setHeight(int height);
+
+            void setFormat(CFFmpeg::AVPixelFormat format);
         };
     }
 }
