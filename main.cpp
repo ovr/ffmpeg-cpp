@@ -93,6 +93,9 @@ int main() {
             cout << "Read packet..." << endl;
 
             code = inputFormatContext->readFrame(packet);
+            if (code == 0 && packet->getStreamIndex() == videoStream->getIndex()) {
+                cout << "Tick video packet..." << endl;
+            }
         }
 
 

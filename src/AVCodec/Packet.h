@@ -22,6 +22,7 @@ namespace FFmpeg {
             CFFmpeg::AVPacket *getStruct() {
                 return this->packet;
             }
+            int getStreamIndex();
         };
     }
 }

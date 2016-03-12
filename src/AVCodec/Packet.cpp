@@ -3,3 +3,7 @@
 //
 
 #include "Packet.h"
+
+int FFmpeg::AVCodec::Packet::getStreamIndex() {
+    return this->packet->stream_index;
+}
