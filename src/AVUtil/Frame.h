@@ -25,6 +25,10 @@ namespace FFmpeg {
             void setHeight(int height);
 
             void setFormat(CFFmpeg::AVPixelFormat format);
+
+            CFFmpeg::AVFrame *getStruct() {
+                return this->frame;
+            }
         };
     }
 }

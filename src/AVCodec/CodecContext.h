@@ -27,6 +27,10 @@ namespace FFmpeg {
             CFFmpeg::AVPixelFormat getFormat();
 
             FFmpeg::Codec::Codec *getCodec() throw(std::exception);
+
+            CFFmpeg::AVCodecContext *getStruct() {
+                return this->context;
+            }
         };
     }
 }
