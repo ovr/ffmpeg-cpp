@@ -97,8 +97,8 @@ int main() {
             if (code == 0 && packet->getStreamIndex() == videoStream->getIndex()) {
                 cout << "Tick video packet..." << endl;
 
-                code = CFFmpeg::avcodec_decode_video2(videoStream->codecContext()->getStruct(), videoFrame->getStruct(), &frameFinished, packet->getStruct());
-                cout << "Decode buff " << code << endl;
+                auto buffer = CFFmpeg::avcodec_decode_video2(videoStream->codecContext()->getStruct(), videoFrame->getStruct(), &frameFinished, packet->getStruct());
+                cout << "Decode buff " << buffer << endl;
             }
         }
 
