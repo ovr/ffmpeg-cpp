@@ -7,6 +7,7 @@
 
 #include "CFFmpeg.h"
 #include "AVCodec/Codec.h"
+#include "AVCodec/Packet.h"
 #include "AVFormat/Stream.h"
 #include "AVFormat/Context.h"
 #include "AVUtil/Frame.h"

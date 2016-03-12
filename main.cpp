@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "src/FFmpeg.h"
+#include "src/AVCodec/Packet.h"
 
 using namespace std;
 
@@ -9,7 +10,12 @@ int main() {
 
     CFFmpeg::av_register_all();
     CFFmpeg::avcodec_register_all();
-    
+
+    cout
+        << endl
+        << "Version of avformat " << CFFmpeg::avformat_version() << endl;
+
+
     auto inputFormatContext = new (FFmpeg::AVFormat::FormatContext);
 
     try {
@@ -69,10 +75,9 @@ int main() {
         videoFrameRGB->setFormat(imageQuantumFormat);
         videoFrameRGB->setWidth(videoStream->codecContext()->getWidth());
         videoFrameRGB->setHeight(videoStream->codecContext()->getHeight());
-
-        cout
-            << endl
-            << "Version of avformat " << CFFmpeg::avformat_version() << endl;
+        
+        auto *packet = new(FFmpeg::AVCodec::Packet);
+        delete packet;
 
         delete videoFrameRGB;
         delete videoFrame;
