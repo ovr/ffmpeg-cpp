@@ -19,6 +19,9 @@ namespace FFmpeg {
             ~Packet() {
                 CFFmpeg::av_free_packet(this->packet);
             }
+            CFFmpeg::AVPacket *getStruct() {
+                return this->packet;
+            }
         };
     }
 }

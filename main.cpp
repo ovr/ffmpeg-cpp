@@ -87,6 +87,15 @@ int main() {
         delete swContext;
 
         auto *packet = new(FFmpeg::AVCodec::Packet);
+        int code = 0;
+
+        while (code == 0) {
+            cout << "Read packet..." << endl;
+
+            code = inputFormatContext->readFrame(packet);
+        }
+
+
         delete packet;
 
         delete videoFrameRGB;

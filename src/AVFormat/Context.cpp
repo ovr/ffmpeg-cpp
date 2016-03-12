@@ -37,5 +37,9 @@ namespace FFmpeg {
         Stream *FormatContext::getStream(int id) {
             return new Stream(this->formatContext->streams[id]);
         }
+
+        int FormatContext::readFrame(FFmpeg::AVCodec::Packet *packet) {
+            return CFFmpeg::av_read_frame(this->formatContext, packet->getStruct());
+        }
     }
 }

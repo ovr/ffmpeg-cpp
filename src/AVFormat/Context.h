@@ -8,6 +8,7 @@
 #include <string>
 #include "../CFFmpeg.h"
 #include "../AVCodec/Codec.h"
+#include "../AVCodec/Packet.h"
 #include "Stream.h"
 
 namespace FFmpeg {
@@ -37,6 +38,8 @@ namespace FFmpeg {
             FFmpeg::Codec::Codec *getVideoCodec();
 
             Stream *getStream(int id);
+
+            int readFrame(FFmpeg::AVCodec::Packet *packet);
 
             void closeInput();
         };
