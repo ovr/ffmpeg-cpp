@@ -75,7 +75,16 @@ int main() {
         videoFrameRGB->setFormat(imageQuantumFormat);
         videoFrameRGB->setWidth(videoStream->codecContext()->getWidth());
         videoFrameRGB->setHeight(videoStream->codecContext()->getHeight());
-        
+
+        auto *swContext = new FFmpeg::SWScale::Context(
+                videoStream->codecContext()->getWidth(),
+                videoStream->codecContext()->getHeight(),
+                videoStream->codecContext()->getFormat(),
+                videoStream->codecContext()->getWidth(),
+                videoStream->codecContext()->getHeight(),
+                CFFmpeg::PIX_FMT_RGB24
+        );
+
         auto *packet = new(FFmpeg::AVCodec::Packet);
         delete packet;
 
@@ -90,19 +99,6 @@ int main() {
     delete inputFormatContext;
 }
 
-//
-//    auto swContext = sws_getContext(
-//        videoStream->codec->width,
-//        videoStream->codec->height,
-//        videoStream->codec->pix_fmt,
-//        videoStream->codec->width,
-//        videoStream->codec->height,
-//        PIX_FMT_RGB24,
-//        SWS_FAST_BILINEAR,
-//        nullptr,
-//        nullptr,
-//        nullptr
-//    );
 //
 //    avpicture_alloc((AVPicture*) videoFrameRGB, imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
 //

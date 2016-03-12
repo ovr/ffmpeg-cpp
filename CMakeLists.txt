@@ -21,7 +21,7 @@ set(
         src/AVFormat/Stream.h
         src/FFmpeg.h
         src/CFFmpeg.h
-        src/AVCodec/CodecContext.cpp src/AVCodec/CodecContext.h src/AVUtil/Frame.cpp src/AVUtil/Frame.h src/AVCodec/Packet.cpp src/AVCodec/Packet.h)
+        src/AVCodec/CodecContext.cpp src/AVCodec/CodecContext.h src/AVUtil/Frame.cpp src/AVUtil/Frame.h src/AVCodec/Packet.cpp src/AVCodec/Packet.h src/SWScale/Context.cpp src/SWScale/Context.h)
 
 add_executable(ffmpeg_test ${SOURCE_FILES})
 
