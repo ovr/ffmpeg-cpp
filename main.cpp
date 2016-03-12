@@ -65,10 +65,10 @@ int main() {
         cout << "VideoStream->CodecContext Width " << videoStream->codecContext()->getWidth() << endl;
         cout << "VideoStream->CodecContext Height " << videoStream->codecContext()->getHeight() << endl;
 
-//        const auto imageQuantumFormat = AVPixelFormat::AV_PIX_FMT_RGB24;
-//        videoFrameRGB->format = imageQuantumFormat;
-//        videoFrameRGB->width = videoStream->codec->width;
-//        videoFrameRGB->height = videoStream->codec->height;
+        const auto imageQuantumFormat = CFFmpeg::AVPixelFormat::AV_PIX_FMT_RGB24;
+        videoFrameRGB->setFormat(imageQuantumFormat);
+        videoFrameRGB->setWidth(videoStream->codecContext()->getWidth());
+        videoFrameRGB->setHeight(videoStream->codecContext()->getHeight());
 
         cout
             << endl
