@@ -21,6 +21,9 @@ namespace FFmpeg {
                         0, nullptr, nullptr, nullptr
                 );
             }
+            ~Context() {
+                CFFmpeg::sws_freeContext(this->context);
+            }
         };
     }
 }

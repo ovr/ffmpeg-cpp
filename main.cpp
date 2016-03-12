@@ -84,6 +84,7 @@ int main() {
                 videoStream->codecContext()->getHeight(),
                 CFFmpeg::PIX_FMT_RGB24
         );
+        delete swContext;
 
         auto *packet = new(FFmpeg::AVCodec::Packet);
         delete packet;
