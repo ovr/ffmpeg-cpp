@@ -57,6 +57,10 @@ int main() {
             cout << "Video stream found (" << videoStream->getIndex() << ", "  << videoStream->getId() << ")" << endl;
         }
 
+
+        auto *videoFrame = new(FFmpeg::AVUtil::Frame);
+        auto *videoFrameRGB = new(FFmpeg::AVUtil::Frame);
+
         cout
             << endl
             << "Version of avformat " << CFFmpeg::avformat_version() << endl;

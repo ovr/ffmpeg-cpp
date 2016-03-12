@@ -9,5 +9,6 @@
 #include "AVCodec/Codec.h"
 #include "AVFormat/Stream.h"
 #include "AVFormat/Context.h"
+#include "AVUtil/Frame.h"
 
 #endif //FFMPEG_TEST_FFMPEG_H
