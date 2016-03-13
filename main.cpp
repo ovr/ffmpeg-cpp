@@ -102,7 +102,7 @@ int main() {
             }
         }
 
-
+        delete frameFinished;
         delete packet;
 
         delete videoFrameRGB;
