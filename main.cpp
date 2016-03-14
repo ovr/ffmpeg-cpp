@@ -112,13 +112,6 @@ int main() {
     delete inputFormatContext;
 }
 
-//
-//    avpicture_alloc((AVPicture*) videoFrameRGB, imageQuantumFormat, videoStream->codec->width, videoStream->codec->height);
-//
-//    AVPacket *packet;
-//    int frameFinished;
-//    packet = new(AVPacket);
-//
 //    while (true) {
 //        av_init_packet(packet);
 //

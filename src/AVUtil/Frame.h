@@ -17,6 +17,9 @@ namespace FFmpeg {
                 this->frame = CFFmpeg::av_frame_alloc();
             }
             Frame(CFFmpeg::AVPixelFormat format, int width, int height) {
+                this->frame = CFFmpeg::av_frame_alloc();
+                CFFmpeg::avpicture_alloc((CFFmpeg::AVPicture*) this->frame, format, width, height);
+
                 this->frame->format = format;
                 this->frame->width = width;
                 this->frame->height = height;
