@@ -29,6 +29,9 @@ namespace FFmpeg {
             CFFmpeg::AVFrame *getStruct() {
                 return this->frame;
             }
+
+            uint8_t *getData();
+            int *getLineSize();
         };
     }
 }
