@@ -66,15 +66,11 @@ int main() {
         cout << endl;
 
         auto *videoFrame = new(FFmpeg::AVUtil::Frame);
-        auto *videoFrameRGB = new(FFmpeg::AVUtil::Frame);
-
         cout << "VideoStream->CodecContext Width " << videoStream->codecContext()->getWidth() << endl;
         cout << "VideoStream->CodecContext Height " << videoStream->codecContext()->getHeight() << endl;
 
         const auto imageQuantumFormat = CFFmpeg::AVPixelFormat::AV_PIX_FMT_RGB24;
-        videoFrameRGB->setFormat(imageQuantumFormat);
-        videoFrameRGB->setWidth(videoStream->codecContext()->getWidth());
-        videoFrameRGB->setHeight(videoStream->codecContext()->getHeight());
+        auto *videoFrameRGB = new FFmpeg::AVUtil::Frame(imageQuantumFormat, videoStream->codecContext()->getWidth(), videoStream->codecContext()->getHeight());
 
         auto *swContext = new FFmpeg::SWScale::Context(
                 videoStream->codecContext()->getWidth(),
