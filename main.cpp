@@ -95,6 +95,16 @@ int main() {
 
                 auto buffer = videoStream->decodeVideoPacket(packet, frameFinished, videoFrame);
                 cout << "Decode buff " << buffer << endl;
+
+                auto transform = swContext->scale(
+                        videoFrame->getData(),
+                        videoFrame->getLineSize(),
+                        0,
+                        videoStream->codecContext()->getHeight(),
+                        videoFrameRGB->getData(),
+                        videoFrame->getLineSize()
+                );
+                cout << "Out height" << transform << endl;
             }
         }
 
@@ -112,67 +122,6 @@ int main() {
     delete inputFormatContext;
 }
 
-//    while (true) {
-//        av_init_packet(packet);
-//
-//        cout << "Read packet..." << endl;
-//
-//        code = av_read_frame(inputFormatContext, packet);
-//        if (code < 0) {
-//            if (code == AVERROR_EOF) {
-//                /** It is the of file */
-//                break;
-//            } else {
-//                cout << av_err2str(code) << endl;
-//                return 0;
-//            }
-//        }
-//
-//        /** This packet is a packet from video stream (Frame) */
-//        if (packet->stream_index == videoStream->index) {
-//
-//            /**
-//             * @return On error a negative value is returned, otherwise the number of bytes
-//             * used or zero if no frame could be decompressed.
-//             * */
-//            code = avcodec_decode_video2(videoStream->codec, videoFrame, &frameFinished, packet);
-//            cout << "Decode buff " << code << endl;
-//
-//            /**
-//             * Return the height of the output slice
-//             */
-//            if (frameFinished > 0) {
-//                code = sws_scale(
-//                        swContext,
-//                        videoFrame->data,
-//                        videoFrame->linesize,
-//                        0,
-//                        videoStream->codec->height,
-//                        videoFrameRGB->data,
-//                        videoFrameRGB->linesize
-//                );
-//
-//                cout << "Out height" << code << endl;
-//                av_free_packet(packet);
-//
-//
-//                saveVideoFrame(videoFrameRGB, videoStream, inputFormatContext);
-//                break;
-//            }
-//        }
-//
-//        av_free_packet(packet);
-//    }
-//
-//
-//    av_frame_free(&videoFrame);
-//    av_frame_free(&videoFrameRGB);
-//
-//    sws_freeContext(swContext);
-//
-//    return 0;
-//}
-//
 //void saveVideoFrame(AVFrame *pFrame, AVStream *videoStream, AVFormatContext *inputFormatContext) {
 //    int tmp;
 //

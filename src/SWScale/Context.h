@@ -24,6 +24,8 @@ namespace FFmpeg {
             ~Context() {
                 CFFmpeg::sws_freeContext(this->context);
             }
+
+            int scale(uint8_t *srcData, int *srcLineSize, int i, int height, uint8_t *dstData, int *dstLineSize);
         };
     }
 }
