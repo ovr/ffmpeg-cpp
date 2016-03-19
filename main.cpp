@@ -84,7 +84,7 @@ int main() {
 
         auto *packet = new(FFmpeg::AVCodec::Packet);
         int code = 0;
-        int *frameFinished = new(int);
+        int *frameFinished = new int(0);
 
         while (code == 0) {
             cout << "Read packet..." << endl;
@@ -96,15 +96,17 @@ int main() {
                 auto buffer = videoStream->decodeVideoPacket(packet, frameFinished, videoFrame);
                 cout << "Decode buff " << buffer << endl;
 
-                auto transform = swContext->scale(
-                        videoFrame->getData(),
-                        videoFrame->getLineSize(),
-                        0,
-                        videoStream->codecContext()->getHeight(),
-                        videoFrameRGB->getData(),
-                        videoFrame->getLineSize()
-                );
-                cout << "Out height" << transform << endl;
+                if (*frameFinished > 0) {
+                    auto transform = swContext->scale(
+                            videoFrame->getData(),
+                            videoFrame->getLineSize(),
+                            0,
+                            videoStream->codecContext()->getHeight(),
+                            videoFrameRGB->getData(),
+                            videoFrame->getLineSize()
+                    );
+                    cout << "Out height" << transform << endl;
+                }
             }
         }
 
