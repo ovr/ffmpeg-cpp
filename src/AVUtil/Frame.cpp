@@ -16,8 +16,8 @@ void FFmpeg::AVUtil::Frame::setFormat(CFFmpeg::AVPixelFormat format) {
     this->frame->format = format;
 }
 
-uint8_t *FFmpeg::AVUtil::Frame::getData() {
-    return (uint8_t*) this->frame->data;
+uint8_t* const *FFmpeg::AVUtil::Frame::getData() {
+    return this->frame->data;
 }
 
 int *FFmpeg::AVUtil::Frame::getLineSize() {

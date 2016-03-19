@@ -38,7 +38,7 @@ namespace FFmpeg {
                 return this->frame;
             }
 
-            uint8_t *getData();
+            uint8_t* const *getData();
             int *getLineSize();
         };
     }

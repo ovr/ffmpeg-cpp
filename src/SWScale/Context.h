@@ -25,7 +25,7 @@ namespace FFmpeg {
                 CFFmpeg::sws_freeContext(this->context);
             }
 
-            int scale(uint8_t *srcData, int *srcLineSize, int i, int height, uint8_t *dstData, int *dstLineSize);
+            int scale(const uint8_t* const *srcData, int *srcLineSize, int i, int height, uint8_t* const *dstData, int *dstLineSize);
         };
     }
 }
