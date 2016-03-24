@@ -78,7 +78,7 @@ int main() {
                 videoStream->codecContext()->getFormat(),
                 videoStream->codecContext()->getWidth(),
                 videoStream->codecContext()->getHeight(),
-                CFFmpeg::PIX_FMT_RGB24
+                CFFmpeg::AVPixelFormat::AV_PIX_FMT_RGB24
         );
         delete swContext;
 
