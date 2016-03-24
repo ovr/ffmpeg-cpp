@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 project(ffmpeg_test)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -v")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -v -Wall")
 set(CMAKE_EXE_LINKER_FLAGS "-std=c++11 -Wl -v")
 
 set(CMAKE_EXE_LINKER_FLAGS "-v")
@@ -21,7 +21,15 @@ set(
         src/AVFormat/Stream.h
         src/FFmpeg.h
         src/CFFmpeg.h
-        src/AVCodec/CodecContext.cpp src/AVCodec/CodecContext.h src/AVUtil/Frame.cpp src/AVUtil/Frame.h src/AVCodec/Packet.cpp src/AVCodec/Packet.h src/SWScale/Context.cpp src/SWScale/Context.h)
+        src/AVCodec/CodecContext.cpp
+        src/AVCodec/CodecContext.h
+        src/AVUtil/Frame.cpp
+        src/AVUtil/Frame.h
+        src/AVCodec/Packet.cpp
+        src/AVCodec/Packet.h
+        src/SWScale/Context.cpp
+        src/SWScale/Context.h
+)
 
 add_executable(ffmpeg_test ${SOURCE_FILES})
 
