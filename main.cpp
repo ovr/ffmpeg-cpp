@@ -65,19 +65,20 @@ int main() {
 
         cout << endl;
 
+        auto *videoStreamCodecContext = videoStream->codecContext();
         auto *videoFrame = new(FFmpeg::AVUtil::Frame);
-        cout << "VideoStream->CodecContext Width " << videoStream->codecContext()->getWidth() << endl;
-        cout << "VideoStream->CodecContext Height " << videoStream->codecContext()->getHeight() << endl;
+        cout << "VideoStream->CodecContext Width " << videoStreamCodecContext->getWidth() << endl;
+        cout << "VideoStream->CodecContext Height " << videoStreamCodecContext->getHeight() << endl;
 
         const auto imageQuantumFormat = CFFmpeg::AVPixelFormat::AV_PIX_FMT_RGB24;
-        auto *videoFrameRGB = new FFmpeg::AVUtil::Frame(imageQuantumFormat, videoStream->codecContext()->getWidth(), videoStream->codecContext()->getHeight());
+        auto *videoFrameRGB = new FFmpeg::AVUtil::Frame(imageQuantumFormat, videoStreamCodecContext->getWidth(), videoStreamCodecContext->getHeight());
 
         auto *swContext = new FFmpeg::SWScale::Context(
-                videoStream->codecContext()->getWidth(),
-                videoStream->codecContext()->getHeight(),
-                videoStream->codecContext()->getFormat(),
-                videoStream->codecContext()->getWidth(),
-                videoStream->codecContext()->getHeight(),
+                videoStreamCodecContext->getWidth(),
+                videoStreamCodecContext->getHeight(),
+                videoStreamCodecContext->getFormat(),
+                videoStreamCodecContext->getWidth(),
+                videoStreamCodecContext->getHeight(),
                 CFFmpeg::AVPixelFormat::AV_PIX_FMT_RGB24
         );
         delete swContext;
@@ -101,7 +102,7 @@ int main() {
                             videoFrame->getData(),
                             videoFrame->getLineSize(),
                             0,
-                            videoStream->codecContext()->getHeight(),
+                            videoStreamCodecContext->getHeight(),
                             videoFrameRGB->getData(),
                             videoFrame->getLineSize()
                     );
