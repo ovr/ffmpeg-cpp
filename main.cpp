@@ -47,6 +47,8 @@ int main() {
             cout
                 << "\t CodecContext " << endl
                 << "\t\t Bit rate " << codecContext->getBitRate() << endl
+                << "\t\t Coded Width " << codecContext->getCodedWidth() << endl
+                << "\t\t Coded Height " << codecContext->getCodedHeight() << endl
                 << "\t\t Delay " << codecContext->getDelay() << endl;
 
             auto codec = codecContext->getCodec();
