@@ -35,3 +35,7 @@ int FFmpeg::Codec::CodecContext::getHeight() {
 CFFmpeg::AVPixelFormat FFmpeg::Codec::CodecContext::getFormat() {
     return this->context->pix_fmt;
 }
+
+int FFmpeg::Codec::CodecContext::getDelay() {
+    return this->context->delay;
+}

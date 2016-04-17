@@ -46,7 +46,8 @@ int main() {
             auto codecContext = stream->codecContext();
             cout
                 << "\t CodecContext " << endl
-                << "\t\t Bit rate " << codecContext->getBitRate() << endl;
+                << "\t\t Bit rate " << codecContext->getBitRate() << endl
+                << "\t\t Delay " << codecContext->getDelay() << endl;
 
             auto codec = codecContext->getCodec();
             cout
@@ -83,11 +84,11 @@ int main() {
         );
         delete swContext;
 
-        auto *packet = new(FFmpeg::AVCodec::Packet);
         int code = 0;
         int *frameFinished = new int(0);
 
         while (code == 0) {
+            auto *packet = new(FFmpeg::AVCodec::Packet);
             cout << "Read packet..." << endl;
 
             code = inputFormatContext->readFrame(packet);
@@ -109,10 +110,11 @@ int main() {
                     cout << "Out height" << transform << endl;
                 }
             }
+
+            delete packet;
         }
 
         delete frameFinished;
-        delete packet;
 
         delete videoFrameRGB;
         delete videoFrame;
